@@ -1,4 +1,4 @@
-@echo off
+@echo on
 setlocal enableextensions enabledelayedexpansion
 
 rem
@@ -32,7 +32,7 @@ rem VS_VERSION is required argument. Default is build all.
 
 set POCO_BASE=%CD%
 set PATH=%POCO_BASE%\bin64;%POCO_BASE%\bin;%PATH%
-set OPENSSL_DIR=D:\1_code\esf\ThirdParty\poco1_11_0\vs2019static\x86\OpenSSL\
+set OPENSSL_DIR=%POCO_BASE%\OpenSSL
 
 set OPENSSL_INCLUDE=%OPENSSL_DIR%\include
 set OPENSSL_LIB=%OPENSSL_DIR%\lib;%OPENSSL_DIR%\lib\VC\static
