@@ -158,7 +158,12 @@ bool EventImpl::waitImpl(long milliseconds)
 		{
 			if (rc == ETIMEDOUT) break;
 			pthread_mutex_unlock(&_mutex);
+#ifdef ENABLE_POCO_EXCEPTION
 			throw SystemException("cannot wait for event");
+#else
+#endif
+
+			
 		}
 	}
 	if (rc == 0 && _auto) _state = false;

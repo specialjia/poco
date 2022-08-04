@@ -59,9 +59,21 @@ bool NamedMutexImpl::tryLockImpl()
 	case WAIT_TIMEOUT:
 		return false;
 	case WAIT_ABANDONED:
+
+#ifdef ENABLE_POCO_EXCEPTION
 		throw SystemException("cannot lock named mutex (abadoned)", _name);
+#else
+		return false;
+#endif
+		
 	default:
+
+#ifdef ENABLE_POCO_EXCEPTION
 		throw SystemException("cannot lock named mutex", _name);
+#else
+		return false;
+#endif
+	
 	}
 }
 

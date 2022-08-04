@@ -47,7 +47,12 @@ bool MutexImpl::tryLockImpl(long milliseconds)
 		}
 		catch (...)
 		{
-			throw SystemException("cannot lock mutex");
+			
+#ifdef ENABLE_POCO_EXCEPTION
+		throw SystemException("cannot wait for event");
+#else
+		return false;
+#endif
 		}
 		Sleep(sleepMillis);
 	}

@@ -51,7 +51,15 @@ bool Timezone::isDst(const Timestamp& timestamp)
 #else
 	struct std::tm* tms = wceex_localtime(&time);
 #endif
-	if (!tms) throw SystemException("cannot get local time DST flag");
+	if (!tms)
+	{
+		
+#ifdef ENABLE_POCO_EXCEPTION
+		throw Poco::SystemException("cannot get local time DST flag");
+#else
+		return false;
+#endif
+	} 
 	return tms->tm_isdst > 0;
 }
 

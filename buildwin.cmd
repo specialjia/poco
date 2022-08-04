@@ -1,4 +1,4 @@
-@echo on
+@echo off
 setlocal enableextensions enabledelayedexpansion
 
 rem

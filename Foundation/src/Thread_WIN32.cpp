@@ -155,7 +155,13 @@ bool ThreadImpl::joinImpl(long milliseconds)
 		threadCleanup();
 		return true;
 	default:
+
+#ifdef ENABLE_POCO_EXCEPTION
 		throw SystemException("cannot join thread");
+	
+#else
+		return false;
+#endif
 	}
 }
 
