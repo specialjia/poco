@@ -154,14 +154,8 @@ bool ThreadImpl::joinImpl(long milliseconds)
 	case WAIT_OBJECT_0:
 		threadCleanup();
 		return true;
-	default:
-
-#ifdef ENABLE_POCO_EXCEPTION
-		throw SystemException("cannot join thread");
-	
-#else
-		return false;
-#endif
+	default: 
+		return false; 
 	}
 }
 

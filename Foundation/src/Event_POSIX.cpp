@@ -151,19 +151,14 @@ bool EventImpl::waitImpl(long milliseconds)
 #endif
 
 	if (pthread_mutex_lock(&_mutex) != 0)
-		throw SystemException("wait for event failed (lock)");
+		return false;
 	while (!_state)
 	{
 		if ((rc = pthread_cond_timedwait(&_cond, &_mutex, &abstime)))
 		{
 			if (rc == ETIMEDOUT) break;
 			pthread_mutex_unlock(&_mutex);
-#ifdef ENABLE_POCO_EXCEPTION
-			throw SystemException("cannot wait for event");
-#else
-#endif
-
-			
+			return false;
 		}
 	}
 	if (rc == 0 && _auto) _state = false;

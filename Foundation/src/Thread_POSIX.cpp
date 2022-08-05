@@ -242,13 +242,8 @@ bool ThreadImpl::joinImpl(long milliseconds)
 	{
 		void* result;
 		if (pthread_join(_pData->thread, &result))
-		{
-
-#ifdef ENABLE_POCO_EXCEPTION
-		throw SystemException("cannot join thread");
-#else
-		return false;
-#endif
+		{ 
+		return false; 
 		}
 			
 		_pData->joined = true;

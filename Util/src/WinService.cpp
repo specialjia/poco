@@ -140,13 +140,8 @@ bool WinService::isRunning() const
 	open();
 	SERVICE_STATUS ss;
 	if (!QueryServiceStatus(_svcHandle, &ss))
-	{
-
-#ifdef ENABLE_POCO_EXCEPTION
-	throw SystemException("cannot query service status", _name);
-#else
-		return false;
-#endif
+	{ 
+		return false; 
 	}
 		
 	return ss.dwCurrentState == SERVICE_RUNNING;
@@ -157,13 +152,8 @@ bool WinService::isStopped() const
 	open();
 	SERVICE_STATUS ss;
 	if (!QueryServiceStatus(_svcHandle, &ss))
-		{
-			
-#ifdef ENABLE_POCO_EXCEPTION
-	throw SystemException("cannot query service status", _name);
-#else
-		return false;
-#endif
+		{ 
+			return false; 
 		}
 	return ss.dwCurrentState == SERVICE_STOPPED;
 }

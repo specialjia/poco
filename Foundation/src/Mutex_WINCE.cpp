@@ -52,12 +52,7 @@ bool MutexImpl::tryLockImpl()
 	case WAIT_OBJECT_0:
 		return true;
 	default:
-		
-#ifdef ENABLE_POCO_EXCEPTION
-		throw SystemException("cannot wait for event");
-#else
-		return false;
-#endif	
+		return false; 
 	}
 }
 
@@ -70,13 +65,8 @@ bool MutexImpl::tryLockImpl(long milliseconds)
 		return false;
 	case WAIT_OBJECT_0:
 		return true;
-	default:
-		
-#ifdef ENABLE_POCO_EXCEPTION
-		throw SystemException("cannot wait for event");
-#else
-		return false;
-#endif	
+	default: 
+		return false; 
 	}
 }
 

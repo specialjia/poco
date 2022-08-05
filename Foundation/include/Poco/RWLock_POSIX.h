@@ -62,12 +62,7 @@ inline bool RWLockImpl::tryReadLockImpl()
 		return false;
 	else
 	{
-
-#ifdef ENABLE_POCO_EXCEPTION
-		throw SystemException("cannot lock reader/writer lock");
-#else
 		return false;
-#endif
 	}
 }
 
@@ -87,12 +82,8 @@ inline bool RWLockImpl::tryWriteLockImpl()
 	else if (rc == EBUSY)
 		return false;
 	else
-	{
-#ifdef ENABLE_POCO_EXCEPTION
-		throw SystemException("cannot lock reader/writer lock");
-#else
-		return false;
-#endif
+	{ 
+		return false; 
 	}
 }
 

@@ -70,12 +70,7 @@ inline bool MutexImpl::tryLockImpl()
 		return false;
 	else
 	{
-
-#ifdef ENABLE_POCO_EXCEPTION
-		throw SystemException("cannot lock mutex");
-#else
 		return false;
-#endif
 	}
 		
 }

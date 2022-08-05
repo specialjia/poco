@@ -131,13 +131,8 @@ bool MutexImpl::tryLockImpl(long milliseconds)
 	else if (rc == ETIMEDOUT)
 		return false;
 	else
-	{
-
-#ifdef ENABLE_POCO_EXCEPTION
-		throw SystemException("cannot lock mutex");
-#else
-		return false;
-#endif
+	{ 
+		return false; 
 	}
 		
 #else
@@ -150,13 +145,8 @@ bool MutexImpl::tryLockImpl(long milliseconds)
 		if (rc == 0)
 			return true;
 		else if (rc != EBUSY)
-		{
-
-#ifdef ENABLE_POCO_EXCEPTION
-		throw SystemException("cannot lock mutex");
-#else
-		return false;
-#endif
+		{ 
+			return false; 
 		}
 #if defined(POCO_VXWORKS)
 		struct timespec ts;
